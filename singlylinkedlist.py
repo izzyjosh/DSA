@@ -61,17 +61,38 @@ class LinkedList:
         return False
         
     def get_index(self,index:int) -> Any:
-        if index == 0 and self.head is not None:
-            return self.head.data
+        head = self.head
+        for i in range(index):
+            if i == index:
+                break
+            head = head.next
+            if head is None:
+                return "index out of range"
+        return head.data
+
+            
+    def insert_at(self,index:int,val) -> Any:
+        newnode = Node(val)
+        head = self.head
+        prev = self.head
+        if index == 0:
+            prev = self.head
+            self.head = newnode
+            newnode.next = prev
+            
         else:
-            head = self.head          
             for i in range(index):
+                if i == index:
+                    break
+                elif i == index-1:
+                    prev = head
                 head = head.next
                 if head is None:
                     return "index out of range"
-            return head.data
-            
-    def insert_at(self,index:int) -> None:
+            # After the loop head is containing the index i want to insert to 
+            # prev is containing the node before the node i want to insert to 
+            prev.next = newnode
+            newnode.next = head
         
 node = Node("hello")
 second_node = Node(8)
@@ -82,3 +103,5 @@ linkedlist.printlist()
 print(linkedlist.list_size())
 print(linkedlist.search(10))
 print(linkedlist.get_index(1))
+print(linkedlist.insert_at(0,5))
+linkedlist.printlist()
