@@ -94,6 +94,38 @@ class LinkedList:
             prev.next = newnode
             newnode.next = head
         
+        
+    def empty_list(self) -> Any:
+        if self.head:
+            self.head = None
+        else:
+            return "list is empty"
+            
+    def delete_val(self,val:Any) -> None:
+        len_list = self.list_size()
+        
+        if self.head.data == val:
+            self.head = self.head.next
+            return
+        
+        head = self.head
+        prev = self.head
+        for i in range(len_list):
+            if head.next.next is None and head.next.data == val:
+                prev = head
+                prev.next = None
+                break
+                
+            if head.next.data == val:
+                prev = head
+            elif head.data == val:
+                break
+            head = head.next
+        
+        prev.next = head.next
+            
+            
+            
 node = Node("hello")
 second_node = Node(8)
 linkedlist = LinkedList()
@@ -104,4 +136,6 @@ print(linkedlist.list_size())
 print(linkedlist.search(10))
 print(linkedlist.get_index(1))
 print(linkedlist.insert_at(0,5))
+linkedlist.printlist()
+linkedlist.delete_val(5)
 linkedlist.printlist()
