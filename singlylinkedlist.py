@@ -124,18 +124,23 @@ class LinkedList:
         
         prev.next = head.next
             
-            
-            
-node = Node("hello")
+
+    def partition(self,k:int) -> None:
+        pass
+node = Node(7)
 second_node = Node(8)
+third_node = Node(1)
 linkedlist = LinkedList()
 linkedlist.insert(node)
 linkedlist.insert(second_node)
+linkedlist.insert(third_node)
 linkedlist.printlist()
 print(linkedlist.list_size())
 print(linkedlist.search(10))
 print(linkedlist.get_index(1))
-print(linkedlist.insert_at(0,5))
+print(linkedlist.insert_at(1,5))
 linkedlist.printlist()
-linkedlist.delete_val(5)
+#linkedlist.delete_val(5)
+linkedlist.printlist()
+linkedlist.partition(1)
 linkedlist.printlist()
