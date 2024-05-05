@@ -1,4 +1,5 @@
 from typing import Any
+import ctypes
 #singly linked list is a Data Structure that stores data that are linked together and each data has a locatiom that is placed in an entirely different place unlike list that stores data in location next to each other 
 #defining a class for each node 
 #A node is a class with two property (data to store and the address for the next node)
@@ -68,7 +69,7 @@ class LinkedList:
             head = head.next
             if head is None:
                 return "index out of range"
-        return head.data
+        return head
 
             
     def insert_at(self,index:int,val) -> Any:
@@ -127,6 +128,21 @@ class LinkedList:
 
     def partition(self,k:int) -> None:
         pass
+        
+    def reverse(self) -> None:
+        head = self.head        
+        for i in range(int(self.list_size()/2)):
+            n = i+1
+            last = self.get_index(self.list_size() - n)
+            
+            new_last = ctypes.cast(id(last),ctypes.py_object).value
+            print(new_last.data)
+            n = head.data
+            head.data = new_last.data
+            new_last.data = n
+            
+            head = head.next
+            
 node = Node(7)
 second_node = Node(8)
 third_node = Node(1)
@@ -143,4 +159,6 @@ linkedlist.printlist()
 #linkedlist.delete_val(5)
 linkedlist.printlist()
 linkedlist.partition(1)
+linkedlist.printlist()
+linkedlist.reverse()
 linkedlist.printlist()
