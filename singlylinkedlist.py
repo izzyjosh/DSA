@@ -127,16 +127,25 @@ class LinkedList:
             
 
     def partition(self,k:int) -> None:
-        pass
-        
+        for i in range(self.list_size()):
+            for j in range(self.list_size()-1):
+                # get the current obj using the get_index method
+                curr = self.get_index(j)
+                curr_obj = ctypes.cast(id(curr),ctypes.py_object).value
+                
+                next = self.get_index(j+1)
+                next_obj = ctypes.cast(id(next),ctypes.py_object).value
+                #swap when the current value is greater than k and the next value is less than k  
+                if curr_obj.data >= k and next_obj.data <= k:
+                    n = curr_obj.data
+                    curr_obj.data = next_obj.data
+                    next_obj.data = n
+                          
     def reverse(self) -> None:
         head = self.head        
-        for i in range(int(self.list_size()/2)):
-            n = i+1
-            last = self.get_index(self.list_size() - n)
-            
+        for i in range(self.list_size() // 2):
+            last = self.get_index(self.list_size() -1 - i)            
             new_last = ctypes.cast(id(last),ctypes.py_object).value
-            print(new_last.data)
             n = head.data
             head.data = new_last.data
             new_last.data = n
@@ -160,5 +169,5 @@ linkedlist.printlist()
 linkedlist.printlist()
 linkedlist.partition(1)
 linkedlist.printlist()
-linkedlist.reverse()
-linkedlist.printlist()
+#linkedlist.reverse()
+#linkedlist.printlist()
