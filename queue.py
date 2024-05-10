@@ -7,7 +7,7 @@ class Queue:
     #Initilize the class with a know size
     #Aqueue implementated with an arr
 
-    def __init__(self: Queue,size:int) -> None:
+    def __init__(self,size:int) -> None:
         self.queue = []
         self.first = 0
         self.last = 0
@@ -16,7 +16,7 @@ class Queue:
 
     # A method to add an item to the queue
 
-    def enqueue(self: Queue, data:Any) -> None:
+    def enqueue(self, data:Any) -> None:
         if self.last == self.capacity:
             print("Queue is full")
         else:
@@ -30,7 +30,11 @@ class Queue:
             print("queue is empty")
         else:
             for i in range(self.last):
-                self.queue[i] = self.queue[i+1]
+                if i == self.last - 1:
+                    self.queue[i-1] = self.queue[i]
+                else:
+                    self.queue[i] = self.queue[i+1]
+            self.last -= 1
 
     # Displaying the queue items
 
@@ -39,9 +43,11 @@ class Queue:
             print("queue is empty")
         else:
             for i in range(self.last):
-                print(self.queue[i], "<--")
+                print(self.queue[i], "<-- ", end="")
+            print()
 
 queue = Queue(5)
+queue.display()
 queue.enqueue(5)
 queue.enqueue("bola")
 queue.display()
