@@ -18,7 +18,7 @@ class LinkedList {
     if (this.head === null) {
       this.head = node;
       this.size += 1;
-      this.list.push(node.data);
+      this.list.push(node.data)
     } else {
       let head = this.head;
       while (head.next !== null) {
