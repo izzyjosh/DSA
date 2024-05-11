@@ -20,6 +20,7 @@ class LinkedList {
       this.size += 1;
     } else {
       this.last.next = node;
+      this.last = this.last.next;
       this.size += 1;
     }
   }
@@ -33,17 +34,15 @@ class LinkedList {
     }
   }
   display() {
-   if (this.size === 0 && this.first === null) {
-    console.log("Empty queue")
-   }
-   else {
-    let head = this.first;
-    for (let i = 0; i < this.size; i++) {
-      console.log(head.data);
-      head = head.next;
+    if (this.size === 0 && this.first === null) {
+      console.log("Empty queue");
+    } else {
+      let head = this.first;
+      for (let i = 0; i < this.size; i++) {
+        console.log(head.data);
+        head = head.next;
+      }
     }
-   }
-    
   }
 }
 
