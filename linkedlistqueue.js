@@ -19,10 +19,21 @@ class LinkedList {
       this.last = node;
       this.size += 1;
     } else {
-      this.last.next = node;
-      this.last = this.last.next;
-      this.size += 1;
+      if (this.first.data < node.data) {
+        const n = this.first;
+        this.first = node;
+        this.first.next = n;
+        this.size += 1;
+      } else {
+        this.last.next = node;
+        this.last = this.last.next;
+        this.size += 1;
+      }
     }
+  }
+
+  max() {
+    console.log("the maximum is "+ this.first.data);
   }
   dequeue() {
     if (this.size === 0 && this.first === null) {
@@ -49,7 +60,6 @@ class LinkedList {
 const queue = new LinkedList();
 queue.display();
 queue.enqueue(8);
-queue.enqueue("josh");
+queue.enqueue(9);
 queue.display();
-queue.dequeue();
-queue.display();
+queue.max();
