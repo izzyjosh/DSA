@@ -39,7 +39,7 @@ class Queue {
     }
   }
 }
-
+#result
 const queue = new Queue(8);
 queue.display();
 queue.enqueue(8);
