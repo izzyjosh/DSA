@@ -39,7 +39,6 @@ class LinkedList:
             while head is not None:
                 arr.append(head.data)
                 head = head.next
-                print(head.data)
             print(arr)
 
     # function that print the size of the list
@@ -175,8 +174,31 @@ class LinkedList:
             head = head.next
             
         head.next = self.head
-            
-
+        
+    def delete_altered(self,val:Any) -> None:
+      head = self.head
+      
+      for i in range(self.size -1):
+        if head.next.next == None and head.next.data == val:
+          head.next = None
+          self.size == 1
+        elif head.data == val:
+          head.data = head.next.data
+          head.next = head.next.next
+          self.size -= 1
+        head = head.next
+        
+    def delete_without_head(self,node:Node) -> None:
+     """
+     Args:
+       node -> pointer to  node to be deleted
+     """
+     node.data = node.next.data
+     node.next = node.next.next
+     self.size -= 1
+     
+     
+     
 node = Node(7)
 second_node = Node(8)
 third_node = Node(1)
@@ -197,5 +219,8 @@ linkedlist.insert(third_node)
 #linkedlist.printlist()
 # linkedlist.reverse()
 # linkedlist.printlist()
-linkedlist.n_node(1)
-linkedlist.circular()
+#linkedlist.n_node(1)
+#linkedlist.circular()
+linkedlist.delete_without_head(node)
+linkedlist.delete_altered(1)
+linkedlist.printlist()
