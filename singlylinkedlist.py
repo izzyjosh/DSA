@@ -197,15 +197,61 @@ class LinkedList:
      node.next = node.next.next
      self.size -= 1
      
-     
-     
+    def remove_duplicate(self):
+      head = self.head
+      curr = self.head
+      while head.next is not None:
+        if head.data == head.next.data and head.next.next == None:
+          curr.next = None
+          head.next = None
+        elif head.data == head.next.data:
+          head = head.next
+        
+        elif head.data != head.next.data:
+          curr.next = head.next
+          curr = head.next
+          head = head.next
+          
+    
+    def get_val(self,val):
+      head = self.head
+      while head is not None:
+        if head.data == val:
+          return head
+        head = head.next
+      return "item not found"
+          
+                      
+    def skipMdeleteN(self,M,N):
+      target = self.get_val(M)
+      curr = target
+      stop = None
+      for i in range(N):      
+        stop = curr
+        if curr.next == None:
+          break
+        curr = curr.next
+        
+      target.next = curr.next
+      
+      
 node = Node(7)
 second_node = Node(8)
 third_node = Node(1)
+fourth_node = Node(7)
+fifth_node = Node(8)
+sixth_node = Node(1)
+seventh_node = Node(1)
+eight_node = Node(1)
 linkedlist = LinkedList()
 linkedlist.insert(node)
+linkedlist.insert(fourth_node)
 linkedlist.insert(second_node)
+linkedlist.insert(fifth_node)
 linkedlist.insert(third_node)
+linkedlist.insert(sixth_node)
+linkedlist.insert(seventh_node)
+linkedlist.insert(eight_node)
 #linkedlist.printlist()
 #print(linkedlist.size)
 #print(linkedlist.list_size())
@@ -221,6 +267,13 @@ linkedlist.insert(third_node)
 # linkedlist.printlist()
 #linkedlist.n_node(1)
 #linkedlist.circular()
-linkedlist.delete_without_head(node)
-linkedlist.delete_altered(1)
+#linkedlist.delete_without_head(node)
+#linkedlist.delete_altered(1)
+#linkedlist.printlist()
 linkedlist.printlist()
+linkedlist.remove_duplicate()
+linkedlist.printlist()
+linkedlist.skipMdeleteN(8,1)
+linkedlist.printlist()
+#m = linkedlist.get_val(0)
+#print(m)
