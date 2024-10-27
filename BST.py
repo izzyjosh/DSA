@@ -1,34 +1,46 @@
 from typing import Any
 
-class BinarySearchTree:
-  
-  def __init__(self, data: Any) -> None:
-    self.data = data
-    self.left = None
-    self.right = None
-    
-  def insert(self, node, data: Any) -> Any:
-    if node is None:
-      return BinarySearchTree(data)
-      
-    if node.data == data:
-      return node
-      
-    if node.data <= data:
-      node.right = self.insert(node.right, data)
-    else:
-      node.left = self.insert(node.left, data)
-    return node
-    
-  def inorder_transversal(self, root):
-    if root:
-      inorder_transversal(root.left)
-      print(root.data, end=" ")
-      
-    inorder_transversal(root.right)
-    
-root = BinarySearchTree(10)
-print(root.data)
-data2 = root.insert(root, 20)
-print(data2.data.data)
 
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+
+class BinarySearchTree:
+
+    def __init__(self) -> None:
+        self.root = None
+
+    def insert(self, key: Any) -> Any:
+        # helper method for managin insert
+        def _insert(root: Node, key: Any) -> Node:
+            if root is None:
+                return Node(key)
+            elif key <= root.key:
+                root.left = _insert(root.left, key)
+            else:
+                root.right = _insert(root.right, key)
+            return root
+
+        if self.root == None:
+            self.root = Node(key)
+            return self.root
+        else:
+            return _insert(self.root, key)
+
+    def inorder(self, node: Node):
+        if node:
+            self.inorder(node.left)
+            print(node.key, end=" ")
+            self.inorder(node.right)
+
+
+bst = BinarySearchTree()
+bst.insert(20)
+bst.insert(30)
+bst.insert(40)
+bst.insert(50)
+
+bst.inorder(bst.root)
